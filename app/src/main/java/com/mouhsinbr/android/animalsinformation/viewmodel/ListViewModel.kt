@@ -3,6 +3,10 @@ package com.mouhsinbr.android.animalsinformation.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.mouhsinbr.android.animalsinformation.di.AppModule
+import com.mouhsinbr.android.animalsinformation.di.CONTEXT_APP
+import com.mouhsinbr.android.animalsinformation.di.DaggerViewModelComponent
+import com.mouhsinbr.android.animalsinformation.di.TypeOfContext
 import com.mouhsinbr.android.animalsinformation.model.Animal
 import com.mouhsinbr.android.animalsinformation.model.AnimalApiService
 import com.mouhsinbr.android.animalsinformation.model.ApiKey
@@ -13,6 +17,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class ListViewModel(application: Application): AndroidViewModel(application) {
 
@@ -21,12 +26,21 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
     val loading by lazy { MutableLiveData<Boolean>() }
 
     private val disposable = CompositeDisposable()
-    private val apiService =  AnimalApiService()
 
-    private val pref = SharedPrefrencesHelper(getApplication())
+    @Inject
+    lateinit var apiService :  AnimalApiService
+
+    @Inject
+    @field:TypeOfContext(CONTEXT_APP)
+    lateinit var pref : SharedPrefrencesHelper
 
     private var invalidApiKey = false
 
+    init {
+        DaggerViewModelComponent.builder().appModule(AppModule(getApplication()))
+        .build().injectAnimalApiService(this)
+
+    }
     fun refresh() {
         invalidApiKey = false
         loading.value = true
