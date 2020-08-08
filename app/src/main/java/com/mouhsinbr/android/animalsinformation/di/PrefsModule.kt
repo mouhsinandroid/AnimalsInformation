@@ -10,12 +10,12 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
-class PrefsModule {
+open class PrefsModule {
 
     @Provides
     @Singleton
     @TypeOfContext(CONTEXT_APP)
-    fun provideSharePreferences(app: Application): SharedPrefrencesHelper {
+    open fun provideSharePreferences(app: Application): SharedPrefrencesHelper {
         return SharedPrefrencesHelper(app)
     }
 
