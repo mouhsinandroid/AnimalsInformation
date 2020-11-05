@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/animal_nav"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/listFragmentAnimal">
 
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.mouhsinbr.android.animalsinformation.view.ListFragment"
+        android:id="@+id/listFragmentAnimal"
+        android:name="com.mouhsinbr.android.animalsinformation.view.ListAnimalsFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/actionList"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragmentAnimal" />
         <argument
             android:name="animal"
             app:argType="com.mouhsinbr.android.animalsinformation.model.Animal" />

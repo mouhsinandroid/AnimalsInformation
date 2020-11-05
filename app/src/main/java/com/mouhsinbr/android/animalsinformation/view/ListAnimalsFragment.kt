@@ -16,7 +16,7 @@ import com.mouhsinbr.android.animalsinformation.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 
 
-class ListFragment : Fragment() {
+class ListAnimalsFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private val listAdapter = AnimalListAdapter(arrayListOf())

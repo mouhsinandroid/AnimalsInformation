@@ -5,6 +5,5 @@ import dagger.Component
 
 @Component(modules = [ApiModule::class])
 interface ApiComponent {
-
     fun injectApi(service: AnimalApiService)
 }

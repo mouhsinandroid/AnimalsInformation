@@ -143,5 +143,5 @@ class ListViewModelTest {
 
         RxJavaPlugins.setInitNewThreadSchedulerHandler { scheduler -> immediate }
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
-}
+    }
 }
